@@ -1,0 +1,57 @@
+                            Introduction
+This is a short report for the final assignment coding. Based on the instructions given on the assignment description, I used the names of the functions and some variables names as it is. I have added some additional functions and I provide some description on each function. 
+
+                       Challenges and overcomes
+For me, understanding the problem was very difficult. I can say, i spent more time on understanding the problem than on coding. This is not because the problem statement is not clear, but lack of familiarity with some of the terms. I overcome this problem by reading again and again as well as vising some page to understand more Rosenblatt's perceptron and genres. Using the real data was also a bit challenging. It was a little hard to debug check the output as there are thousands of words in each file. 
+
+I believe, the solution I provided to implement the final question is good. Because, I used the function signature read_data(*files) which accepts any arguments as we want. Even the question asked to used two files and consider them as two different genres,  the read_data() function can be used to classify the any number of genres.
+
+                       Difference between taking unique words and repeated words
+When I included all the repeated tokens in the document, The polarity some words on the lexicon was very high. Especially, for the conjunction and articl words, their polarity was very high. But When I took only one token for each word, the polarity of the lexicon was 1, 0 or -1. I believe, this is efficient as it eliminates the effect of conjunction and article words on the classification process.
+
+In addition, I saw different result on the evaluation of the model. In my case, for the fiction.tsv and learned.tsv as well as for the press.tsv and belles_lettres.tsv files, I got (0, 1, 1, 1) when I included all the tokens. Which means the guess for this model is wrong. But, when I included only one word from the repeated tokens, I got (1, 1, 1, 1) which is correct guessing. But, for the files fiction.tsv and press.tsv together, I got (1, 1, 1, 1) in both cases.
+
+forall x. forall y.(D(x) and L(x)(y)) rightarrow x = y
+[[(D(x) and L(x)(y)) rightarrow x = y]]^(M1[x rightarrow k, y rightarrow l])
+(D(x) and L(x)(y)) rightarrow x = y
+
+                    Semantics Solution to Mock exam 
+==================================================================================
+1.1)   
+  a) Alan is a dinosaur
+     D(a)
+  b) No mammoth is a dinosaur.
+      neg exists x.M(x) and D(x) 
+  c) Dianne only loves dinosaurs who eat plants.
+    forall x.(D(x) and L(x)(d)) rightarrow P(x) 
+  d) Dinosaurs only love themselves.
+     forall x.forall y.(D(x) and L(y)(x)) rightarrow x=y
+  e) Mammoths only love dinosaurs who eat plans.
+     forall x.forall y.(M(x) and L(y)(x) and D(y)) rightarrow P(y)
+  f) Mammoths only love other mammoths.
+     forall x.forall y.(M(x) and L(y)(x)) rightarrow M(y)
+  g) If Alan is a plant eater, then there’s a mammoth that loves him. 
+     P(a) rightarrow exists x.M(x) and L(a)(x) 
+2.1) 
+a) D(a)
+
+c) 
+  [[forall x.(D(x) and L(x)(d)) rightarrow P(x)]]^M1
+  [[(D(x) and L(x)(d)) rightarrow P(x)]]^(M1(x rightarrow k))
+d)
+[[forall x.forall y.(D(x) and L(y)(x)) rightarrow x=y]]^M1
+[[(D(x) and L(y)(x)) rightarrow x=y]]^M1(x rightarrow k, y rightarrow l)
+(D(k) and L(l)(k)) rightarrow k=l
+
+f) 
+[[forall x.forall y.(M(x) and L(y)(x)) rightarrow M(y)]]^M1
+[[(M(x) and L(y)(x)) rightarrow M(y)]]^M1(x rightarrow k, y rightarrow l)
+(M(k) and L(l)(k)) rightarrow M(l)
+g) 
+
+[[P(a) rightarrow exists x.M(x) and L(a)(x) ]]^M1
+[[P(a) rightarrow M(x) and L(a)(x) ]]^M1(x rightarrow k)
+ P(a) rightarrow M(k) and L(a)(k) 
+
+
+

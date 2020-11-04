@@ -1,0 +1,117 @@
+Part A
+=============
+
+When we type 1+1 on the REPL, it gave us 2. which adds the first operand with the second operand and prints the result.
+When we run a python file with the content 1+1 and when we run it, nothing is printed to the screen because there is no
+print statement.
+
+If give the statement print('hello brave new world!') to the REPL, hello brave new world! is printed and the same if we run
+using python3 for the file with content print('hello brave new world!').
+
+Comparison
+==========
+When we write and experion on the REPL, It will excute the expression and print the result as an output.  By default, the print() function is already implemented in REPL. When we give an expression in REPL, the expression will pass as an argument to the print() function and the result will be printed. But, the expressions we provided should be correct python codes. If we write Hello on the REPL, It will rise up an error because Hello is not understood by python.
+
+But, when we want to use a python expression from a file, we have to give the expression we want to print to the screen as argument. Otherwise, the operation will only performed without showing the prompt.
+
+Part B
+======
+
+B1) 
+ 1) In a call to print, what happens if you leave out one of the parentheses, or both?
+    When I eliminate both the parentheses Python3 generates an error message that says "Missing parentheses in call to 'print'. Did you mean print(4+10)?" . But, this works fine in python2. If we eliminate one of the parentheses, both python2 and  python3 generates an error message.
+2) If you are trying to print a string, what happens if you leave out one of the quotation marks, or both?
+    If we eliminate one of the the quotation marks, It generates an error message like "EOL while scanning string literal". But if we eliminate both the quotation marks, it says "NameError: name 'Hello' is not defined"
+    This is because, Python3 assumes Hello is a variable that holds some value, but we didn't defined it.
+3) You can use a minus sign to make a negative number like -2. What happens if you put a plus sign before a number? What   about 2++2?
+    If we put a + sign before a number the number will be printed. Python treats - and + as indication of negative and positive numbers respectively if they are placed before numbers. And the result 2+++++2 or 2++2 is the same 
+    as 2+(+2) = 2+2 =4;
+4) In math notation, leading zeros in integers are ok, as in 09. What happens if you try this in Python? What about 011?
+   In Python2, if the number has leading zero, it will be treated as Octal notation system and it will be treated as a Decimal equivalence of that octal notation. when we try to print 09, it generates an error message "SyntaxError: invalid token" because 09 is out of range for Octal number system, but when we give 011, the decimal equivalence of 011 which is 9 will be printed.
+
+   In python3, if the number has leading zero, it generates an error message "SyntaxError: invalid token". Python3 uses 0o leading to treate numbers as an Octal number.
+5) What happens if you have two values with no operator between them.
+   It generates an error message "SyntaxError: invalid syntax" by pointing to the second operand.
+B2) Start the Python interpreter and use it as a calculator.
+ 1) How many seconds are there in 42 minutes 42 seconds?
+      42 minutes are equal to  2520 seconds and + 42 seconds will be 2562 seconds
+ 2) How many miles are there in 10 kilometers? Hint: there are 1.61 kilometers in a mile.
+        10 Kilometers are equal to  6.211180124223602 miles
+ 3) If you run a 10 kilometer race in 42 minutes 42 seconds, what is your average pace (time per mile in minutes and seconds)? What is your average speed in miles per hour?
+    Average pace miles per minute is 0.14546089283896022 miles per minute
+    Average pace miles per second is 0.0024243482139826703 miles per second
+    Average pace miles per hour is 4.0405803566377844e-05  miles per second
+B3) 
+1) We've seen that n = 42 is legal.
+    42=n is not legal and generates an error message "SyntaxError: can't assign to literal".
+2) What about 42 = n? How about x = y = 1?
+   x=y=1 is legal and 1 is assigned to x and y.
+3) In some languages every statement ends with a semi-colon, ;. What happens if you put a semi-colon at the end of a Python statement?
+   It run without any error. putting ; at the end of a Python statement doesn't bring any change.
+4) What if you put a period at the end of a statement?
+   It generates an error message for SyntaxError.
+5) In math notation you can multiply x and y like this: xy. What happens if you try that in Python?
+  In python, multiplication like xy is not supported as it treats them as variable xy and generates an error message NameError.
+B4) Practice using the Python interpreter as a calculator, but for these questions, use variables to structure your solutions:
+1) The volume of a sphere with radius r is ⁴⁄₃πr³. What is the volume of a sphere with radius 5?
+    The Python code for this questions can be 
+                r=5
+				pi=3.14
+				rate =4/3
+				volume= rate*pi*(r**3)
+				print("volume of sphere with radius 5 is", volume)
+   and the output is volume of sphere with radius 5 is 523.3333333333334.
+2) Suppose the cover price of a book is $24.95, but bookstores get a 40% discount. Shipping costs $3 for the first copy and 75 cents for each additional copy. What is the total wholesale cost for 60 copies?
+
+  The python code for this question can be total_copy = 60;
+			cover_price = 20.95
+			discount = 0.40
+			discount_cover_price = cover_price*discount
+			total_cover_price = discount_cover_price*60
+			firs_shipping_cost = 3
+			each_shipping_cost = 0.75
+			total_shippig_cost = 3+(0.75)*(total_copy-1)
+			total_wholesale_cost =total_cover_price+total_shippig_cost
+			print("The total wholesale cost for 60 copies is", total_wholesale_cost) 
+	and the result is, The total wholesale cost for 60 copies is 550.0500000000001
+
+4) If I leave my house at 6:52 am and run 1 mile at an easy pace (8:15 per mile), then 3 miles at tempo (7:12 per mile) and 1 mile at easy pace again, what time do I get home for breakfast?
+
+  The python code for thie question can be 
+
+		leaving_time_in_minutes = 6*60+52
+		easy_pace_time_in_minutes = 8*60+15
+		time_taken_for_easy_pace = easy_pace_time_in_minutes-leaving_time_in_minutes
+		tempo_time_in_minutes = 3*(7*60+12)
+		time_taken_for_tempo = tempo_time_in_minutes - leaving_time_in_minutes
+		total_time_to_get_home_in_minutes = leaving_time_in_minutes + 2*time_taken_for_easy_pace + 2*time_taken_for_easy_pace
+
+		to_get_home_hours = total_time_to_get_home_in_minutes//60
+		to_get_home_minutes = total_time_to_get_home_in_minutes%60;
+		print("Time to get home for breakfast is ", to_get_home_hours,":", to_get_home_minutes)
+I considered (8:15 per mile) means the finishing time. and the result is 
+       Time to get home for breakfast is  12 : 24	
+
+Part C
+======
+
+1) Since indexing starts from 0, the index of the 7th element is 6. That is len(whole_dec)-1;
+
+2) Explain the different parts of the call to the print function at lines 12–13
+   First, it checks whether  the condition whole_deck[middle] == my_card True of False. If it's True, it will getout of the loop and returned the result to the print() function to print the information. Otherwise, it will check the elif condition and if this is True value of middle will be given to top and control back to the while loop. Otherwise, it will jump to the last else statement and the value of bottom will be incremented by 1. And then it, ill get back to the while loop again.
+
+3) With the whole deck kept as it is, look for the card h. Describe what happens. Try to describe why. Is this an error? If so, what kind?
+   When we change the value of my_card value to h, the program generates an error message "IndexError: string index out of range". This is because h is greater than all the cards and neither conditon line number 12 nor line number 14 can be True. So, line number 18 excuted 7 times and when the value of middle is 7+7/2 = 7, it will generates an index out of range exception since the length of the the whole_deck is 7. The is because the, we can access whole_deck cards by idexting from 0 up to 6(len-1)
+4) 
+	After removing c from the card and search for d, it works fine and return the position of d as 2. But, when we search for c, the program prints infinite times for "bottom = 2 top = 1 - remaining cards". When we use the head filter it filter the head arugments. For example i use head -20 to list the first 20 lines of the output. Finally, it shows 
+	"BrokenPipeError: [Errno 32] Broken pipe" at the end to show that the program is interupted by external signal. If we press Cntl+C, it shows KeyboardInterrupt error. 
+
+5)
+ 	I think this looks a run time error and most probably recursive error run time error, but the condition for recursive error is when a function repeatedly calls itself for infinite number of times. Most probably, we can say this is also a recursive run time error as the program never terminate.
+
+ 	As we can see from the code  the given cards are whole_deck = "abdefg" the the card we want to find is my_card = "c"
+ 	When the value of top and bottom both reaches a value 2 on the 4th iteration, the value of middle becomes 2 and the value at whole_deck[2] is d and it is clear c is less than d. Then the condition at line 14 (elif my_card < whole_deck[middle]) is becomes True and it assigns the value of middle which is 2 to top. Then, the values of middle will not be changed the the values of top and bottom are always 2 in this condition. 
+
+I think, The solution could be to change the while codition like for example while(bottom < top) and the code at line number 15 would be top = middle-1. In this case the code terminates out of the while loop even if the card is not found when it reaches a condition bottom < top becomes False, which means the value of the top becomes negative. 
+
+But, we should also change the statement print('Card', my_card, 'is at position', middle). In this case, the a wronge infomation can be printed even if the card is not found as middle always will have a value (bottom+top/2). So, we have to care about this also.

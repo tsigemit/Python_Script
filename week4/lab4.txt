@@ -1,0 +1,63 @@
+1) [prose] Each of the children has a name. There are: Gerlof von Bayes, Anna Lang, Diderik Legrand and Pi Thon-Rappel. How would you represent this collection of names? (Be specific; give the implementation but also describe your choice)
+
+  For this question, We can use tuple if we are sure the names are correctly writen and no need to change.
+
+  e.g, 
+  first_last_name = (('Gerlof von', 'Bayes'), ('Anna', 'Lang'), ('Diderik', 'Legrand'), ('Pi', 'Thon-Rappel'))
+  From this, we can access the value we want using indexing 
+
+  2) For this question, we can use dictionary. That is dictionary of dictionaries where the keys are the security number and the values are also dictionaries. Since every child has a unique security number, we can access the name as well as the birth date of that child using that security number. I prefer to use the data type of the security numbers as string since there are security numbers start with 0.
+     
+
+  e.g   
+  dic_of_children = {'4567':{'name':'Gerlof', 'date_of_birth': '2016-12-31'}, 
+                     '2345':{'name':'Anna', 'date_of_birth': '2015-08-14'}, 
+                     '0123': {'name':'Diderik', 'date_of_birth': '2015-03-03'}, 
+                     '8901':{'name':'Pi', 'date_of_birth': '2015-02-29'}
+                   } 
+
+3) Each of the children has a favourite set of topics: Gerlof enjoys syntax, historical linguistics, logic programming and spelling; Anna is only interested in argumentation analysis; Pi specializes in programming language design; and Diderik mostly writes about NLP for Gothic, but occasionally also about sand castle engineering. How should this information be captured and why?
+
+The same as question number 2, we can also use dictionary of dictionaries. We can use their security numbers as a key and a dictionary as value using their favourite topic as a list so that we are able to edit the topics since some of them are interested on other topics. Here, I am using security numbers as a key because two children may have the same name.
+
+e.g
+favorite_topic ={ '4567': {'name': 'Gerlof','topic': ['syntax', 'historical linguistics', 'logic programming','spelling']}, 
+                  '2345': {'name': 'Anna', 'topic':['argumentation analysis']}, 
+                  '0123':  {'name': 'Diderik','topic': ['NLP for Gothic']}, 
+                  '8901': {'name': 'Pi', 'topic': ['programming language design']}
+                 }
+If Diderik change specialization occasionally, we can update using 
+
+favorite_topic['0123']['topic']='sand castle engineering';
+
+4) [prose] Finally, describe and show how all of the information above can be combined into one large data structure.
+For this question, we can use dictionary. In short the data structure looks
+  
+   child_information={id:{first_name:'', last_name: '', topic:[] } }
+
+From this we can access any information about the child using his security numbers. For the topics, I prefer to use lists so that we can change the values since there are children who can change their favorite topic occasionally. We can represent the overall data structure as follows.
+
+child_information ={'4567':{"first_name": 'Gerlof von',
+                          "last_name": 'Bayes',
+                          'date_of_birth': '2016-12-31',
+                          "topic": ['syntax', 'historical linguistics', 'logic programming','spelling']
+                          },
+
+                    '2345':{"first_name":'Anna',
+                          "last_name":'Lang',
+                          'date_of_birth': '2015-08-14',
+                          "topic":['argumentation analysis']
+                          },
+
+                    '0123':{"first_name": 'Diderik',
+                          "last_name": 'Legrand',
+                          'date_of_birth': '2015-03-03',
+                          "topic":['NLP for Gothic'],
+                          },
+                    '8901':{"first_name": 'Pi',
+                          "last_name": 'Thon-Rappel',
+                          'date_of_birth': '2015-02-29',
+                          "topic":['programming language design']
+                          },
+
+                          }

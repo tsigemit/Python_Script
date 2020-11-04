@@ -1,0 +1,52 @@
+              Part A
+        ===================
+         Questions about concepts
+        --------------------------
+1) What are two major types of function? 
+    The two major types of functions are void and fruitful functions. fruitful functions are functions that have something to return 
+    to the caller function where as void functions are functions that didn't return anything to the caller function but can modify the 
+    do some operations.
+2) What is difference between defining a function and calling a function?
+    Defining a function refers to declaring the name of the function, parameters of the function as well as implementation the body of the
+    function where as calling a function refers to the condition where we call the function that we want to be executed.
+3) What is difference between function parameters and function arguments?
+   function parameters are the list of parameters within the function opening and closing braces. They refers to the name of the variables or objects we want to accept from the calling function. Function arguments are the the actual values passed to the function. These values can be accessed inside the function using the parameter names.
+4) Parameters are said to be local to a function, as are variables that assigned to in that function. What does it mean to be local to a function?
+   When we say parameters are local to a function, we mean that the variables life time is within the block of that function. These variables are not known by the interpreter outside of the function.
+5) List all statements that we seen thus far that can be considered as associating a name with an object, apart from the obvious candidate, the assignment statement?
+   Out of the assignment statement, functions can be considered as associating names with an objects based on their implementation. If we have a function that is called by other function, the interpreter jumps to that function and associates all the local variables as well as other expressions to that local namespace. If the variables are not withing the local namespace, the interpreter goes out of the function to the enclosing function or global namespace. Then, the variables or expressions are associated with global namespace and can be used by the inner function. 
+
+                Tracing code
+             ------------------
+def b(z):
+    prod = a(z, z) 
+    return prod
+
+def a(x, y): 
+    x = x + 1
+    return x * y 
+
+def swap(a, b):
+    a, b = b, a
+
+def c(): 
+    a = 1
+    b = 2 
+    swap(a, b) 
+    print(a) 
+    print(b)
+
+6) print(b(5))
+   This gives an output of 30. Because, the print function calls the b(z) function with argument 5 and the b(z) function calls the a(x, y)
+   function using the (5, 5) as arguments. Then the a(x, y) function increments the value of x by and returns the product of of x and y which is 6*5=30.
+7) print(a(9,7))
+   The result of this function is 70. The print function calls the a(x,y) function using 9 and 7 as arguments and the a(x, y) function increments the value of x by 1 and returns the product of x and y which is 10*7=70.
+8) print(b('a'))
+   This generates an error message. After the print function calls the b(z) function with a string 'a', the b(z) function again calls the a(x, y) function with string arguments, but the first line inside the a(x, y) function tries to concatenate string with integer which is not understood by the interpreter and this generates an error.
+9) x = 1
+   y = 2
+   x, y = y, x
+   print(x,y)
+    The result of this code is 2 1. The print function print the values of x and y. Initially, value x was 1 and value y was 2, but after the expression x, y = y, x, values of x and y is swapped. First, the right hand side expression that is y,x is created as tuples in a memory before execution started. After execution, the left hand side expression x,y are treated as identifiers of the tuples y and x respectively. Therefore, the value y is assigned to x and value x is assigned to y. 
+ 10) c()
+      The result of this function is 1 2. After the c() is called, the values of a and b are assigned 1 and 2 respectively. Then, it calls the the swap(a, b) function using a and b as arguments. This function swaps the values of a and b. But, these a and b variables are different from the a and b variables passed from function c(). So, the print function inside the c() function prints the original value of a and b which is 1 and 2 respectively.
