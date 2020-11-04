@@ -1,0 +1,125 @@
+Q1) What would the ls command look like if you wanted to list all seperate chapters, but not
+    the files with front- and backmatter, and not the file containing the combined chapters called
+    chapters_all.txt ?. 
+     We can use the command,  ls chapter[01]*
+        The characters inside [] are alywas excuted by the command one by one. The wildcard characters * is used to include any character as an argument for the command.
+ Q2) What does the command look like to find all instances of Dinah in any of the chapters, but not
+      in the the front- and backmatter?
+      
+      We can use the command,  grep Dinah chapter[01]* 
+
+ Q3) What command would achieve this?
+      We can use the command, grep -c Alice chapter[01]*
+     Here, the argument chapter[01]* helps us to list all the chapters and -c option is used to count the number of 
+     matching characters with Alice in each file. 
+
+ Q4a) Which chapter has the most mentions of Alice relative to its size
+      The file chapter08.txt has the most mentions of Alice relative to its size. It has 51 Alice counts to total of 14452 bytes.
+ Q4b) how many occurrences of Alice per word does this chapter have?
+     I stored the number of Alice count in a variable like this : countAlice=$(grep -c Alice chapter09.txt)
+     and I store the total number of words in this file as: words=$(wc -w chapter09.txt | awk '{print $1}')
+     Then, the ratio of countAlice to the total number of words is calculated as rate=$((countAlice/words)) which is 0 in 
+     this case as it used integer division but it is 
+
+ Q5 How many paragraphs are in the book?
+  Thre are 815 line. we can use the command wc -l tokenized.txt | awk '{print $1}' sicne each paragraphs is in one line as specified in the lab manual.
+
+  Q6) Change the command, so that the complete output of tr is written to a file one_token_per_line 
+    I changed the command to: tr ' ' '\n' <tokenized.txt >one_token_per_line
+
+  Q7) Replace head by a call to tail . What do you see?
+       After replacing head with tail we got 
+
+       youth
+       youth
+       youth
+       zealand
+       zigzag
+
+ These are the last 5 lines. 
+
+ Q8) Do we have to use the intermediate file one_token_per_line ? What do you think are the pros
+and cons of using such an intermediate file?
+
+I think, It's better to use the intermediate file. The prons of using the intermediate file can be.
+ If the content of the original file is very important, using the intermediate file will help not to damage the content of the original file. 
+ For security purposes, It's also important to use the intermediate file.
+
+ The cons of using the intermediate file may be extra space required. Otherwise, I recommend using the intermediate file
+
+
+Q9) Try to describe why we need those options?
+
+  The -n option is used to sort usig the frequency (the number lines) 
+  where as the -r option is used to sort in reverse order (higher frequency first)
+
+ Q10) Compare this to the output of head -n5 one_token_per_line , and make sure you understand
+what you are seeing here.
+   Yes, It is clear the tail filters  based on the option -n+k where k is any number. 
+   When we excute withouth tail -n+k option, head -n5 will return the first five lines. But, I we 
+   use tail-n+k with head -n5, it will return five lines starting from line number k and the result are different
+   from using without tail-n+k.
+
+
+Q11 Use a combination of tail and head to find numbers 11–20 in the list of most frequent word pairs
+    We can do this using the command paste like,
+    paste one_token_per_line one_token_per_line_o1 | sort | uniq -c | sort -nr | head -n20 | tail -n9
+    The head -n20 will select the first 20 most frequent word pairs and the tail -n11 will select the
+    the last 9 most frequent word pairs. The the result will be from 11-20
+
+
+Q12) Extend the method for counting pairs to counting three-token combinations. What are the 20 most common combinations?
+     First we can use the command, tail -n+2 one_token_per_line | head -n20 > one_token_per_line_o1 to copy 20 lines to this file and again, we can create a third file and copied the same 20 lines using the command 
+     tail -n+1 one_token_per_line | head -n20 > one_token_per_line_o2
+
+    Finally, we can use the paste command like, 
+    paste one_token_per_line one_token_per_line_o1 one_token_per_line_o2| sort  | uniq -c |  sort -nr | head -n20 
+    to select the 2o most common combinations. The result is looks like this:
+
+		   2418 ,		
+		   1636 the		
+		   1115 ‘		
+		   1112 ’		
+		    988 .		
+		    866 and		
+		    724 to		
+		    631 a		
+		    595 it		
+		    553 she		
+		    544 i		
+		    510 of		
+		    462 said		
+		    450 !		
+		    411 you		
+		    396 alice		
+		    367 was		
+		    366 in		
+		    315 that		
+		    264 --
+
+  Q13a) If you know / manage to figure out how to use regular expressions in grep : use that; otherwise: stack different grep filters in a pipeline to exclude the offending combinations.
+
+ Q13b) What are the 20 most common combinations?
+ 	We can use the grep -E [a-zA-z] command to select only the alphabetic characters and remove the ofended punctuation from the output. Then, we can apply paste command like
+ 	paste one_token_per_line one_token_per_line_o1 one_token_per_line_o2 | grep -E [a-z]| sort  | uniq -c |  sort 	-nr | head -n20, and the result is
+
+			    1636 the		
+			    866 and		
+			    724 to		
+			    631 a		
+			    595 it		
+			    553 she		
+			    544 i		
+			    510 of		
+			    462 said		
+			    411 you		
+			    396 alice		
+			    367 was		
+			    366 in		
+			    315 that		
+			    263 as		
+			    247 her		
+			    217 nt		
+			    212 at		
+			    200 s		
+			    192 on
